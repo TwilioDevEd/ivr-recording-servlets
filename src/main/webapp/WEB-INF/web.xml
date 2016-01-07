@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <welcome-file-list>
+        <welcome-file>home.html</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>ivr-welcome</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.ivr.WelcomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>menu-show</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.menu.ShowServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>commuter-connect</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.commuter.ConnectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ivr-welcome</servlet-name>
+        <url-pattern>/ivr/welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menu-show</servlet-name>
+        <url-pattern>/menu/show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>commuter-connect</servlet-name>
+        <url-pattern>/commuter/connect</url-pattern>
+    </servlet-mapping>
+</web-app>
