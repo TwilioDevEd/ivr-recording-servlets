@@ -11,7 +11,7 @@ import java.io.IOException;
 public class CallServlet extends WebAppServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, TwiMLException {
+            throws ServletException, IOException {
 
 
         String dialCallStatus = request.getParameter("dialCallStatus");

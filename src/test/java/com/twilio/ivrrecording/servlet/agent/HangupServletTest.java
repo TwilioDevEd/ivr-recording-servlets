@@ -35,7 +35,7 @@ public class HangupServletTest extends BaseTwilioServletTest {
     }
 
     @Test
-    public void postMethod__ThenRespondsWithMessageAndHangup() throws Exception {
+    public void postMethod_ThenRespondsWithMessageAndHangup() throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
         when(response.getWriter()).thenReturn(printWriter);

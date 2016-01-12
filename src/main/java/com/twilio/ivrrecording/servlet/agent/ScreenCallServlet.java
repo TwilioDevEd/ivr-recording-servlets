@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ScreenCallServlet extends WebAppServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, TwiMLException {
+            throws ServletException, IOException {
 
         String from = request.getParameter("from");
 

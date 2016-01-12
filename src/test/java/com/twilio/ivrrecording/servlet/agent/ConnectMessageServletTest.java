@@ -36,7 +36,7 @@ public class ConnectMessageServletTest extends BaseTwilioServletTest {
     }
 
     @Test
-    public void postMethod__ThenRespondsWithInstructions() throws Exception {
+    public void postMethod_RespondsWithInstructions() throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
         when(response.getWriter()).thenReturn(printWriter);

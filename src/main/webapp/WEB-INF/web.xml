@@ -5,31 +5,52 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <welcome-file-list>
-        <welcome-file>home.html</welcome-file>
+        <welcome-file>agents.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>ivr-welcome</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.ivr.WelcomeServlet</servlet-class>
+        <servlet-name>agent-list</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.AgentsServlet</servlet-class>
     </servlet>
+
     <servlet>
-        <servlet-name>menu-show</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.menu.ShowServlet</servlet-class>
+        <servlet-name>agent-call</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.CallServlet</servlet-class>
     </servlet>
+
     <servlet>
-        <servlet-name>commuter-connect</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.commuter.ConnectServlet</servlet-class>
+        <servlet-name>agent-connect-message</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.ConnectMessageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>agent-screen-call</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.ScreenCallServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>agent-hangup</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.HangupServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ivr-welcome</servlet-name>
-        <url-pattern>/ivr/welcome</url-pattern>
+        <servlet-name>agent-list</servlet-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/agents</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>menu-show</servlet-name>
-        <url-pattern>/menu/show</url-pattern>
+        <servlet-name>agent-call</servlet-name>
+        <url-pattern>/agents/call</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>commuter-connect</servlet-name>
-        <url-pattern>/commuter/connect</url-pattern>
+        <servlet-name>agent-connect-message</servlet-name>
+        <url-pattern>/agents/connect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agent-screen-call</servlet-name>
+        <url-pattern>/agents/screen-call</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agent-hangup</servlet-name>
+        <url-pattern>/agents/hangup</url-pattern>
     </servlet-mapping>
 </web-app>

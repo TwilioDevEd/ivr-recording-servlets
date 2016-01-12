@@ -2,10 +2,11 @@ package com.twilio.ivrrecording.servlet;
 
 import com.twilio.sdk.verbs.TwiMLResponse;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class WebAppServlet {
+public class WebAppServlet extends HttpServlet {
 
     protected WebAppServlet() {
     }

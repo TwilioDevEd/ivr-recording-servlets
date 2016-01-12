@@ -19,7 +19,7 @@ public abstract class Repository<T> {
 
         Map<String, String> properties = getProperties();
         em = Persistence
-                .createEntityManagerFactory("airtng", properties)
+                .createEntityManagerFactory("ivr-recording-servlets", properties)
                 .createEntityManager();
     }
 

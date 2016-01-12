@@ -1,8 +1,10 @@
 package com.twilio.ivrrecording.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "agents")
 public class Agent {
@@ -21,9 +23,11 @@ public class Agent {
     private List<Recording> recordings;
 
     public Agent() {
+        recordings = new ArrayList<Recording>();
     }
 
     public Agent(String extension, String phoneNumber) {
+        this();
         this.extension = extension;
         this.phoneNumber = phoneNumber;
     }
@@ -63,5 +67,13 @@ public class Agent {
         if (this.recordings.remove(reservation) && reservation.getAgent() == this) {
             reservation.setAgent(null);
         }
+    }
+
+    public List<Recording> getRecordings() {
+        return recordings;
+    }
+
+    public void setRecordings(List<Recording> recordings) {
+        this.recordings = recordings;
     }
 }

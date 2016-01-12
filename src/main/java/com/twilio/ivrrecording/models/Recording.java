@@ -2,6 +2,7 @@ package com.twilio.ivrrecording.models;
 
 import javax.persistence.*;
 
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "recordings")
 public class Recording {

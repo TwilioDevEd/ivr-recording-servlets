@@ -40,7 +40,7 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
     }
 
     @Test
-    public void postMethod_ThenResponseContainsGatherAndHangup() throws Exception {
+    public void postMethod_ResponseContainsGatherAndHangup() throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
 
@@ -61,7 +61,7 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
     }
 
     @Test
-    public void postMethod_ThenResponseContainsSpelledPhoneNumber() throws Exception {
+    public void postMethod_ResponseContainsSpelledPhoneNumber() throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
 
