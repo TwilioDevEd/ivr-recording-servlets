@@ -1,5 +1,6 @@
 package com.twilio.ivrrecording.servlet.ivr;
 
+import com.twilio.ivrrecording.servlet.WebAppServlet;
 import com.twilio.sdk.verbs.Gather;
 import com.twilio.sdk.verbs.Play;
 import com.twilio.sdk.verbs.TwiMLException;
@@ -10,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class WelcomeServlet extends HttpServlet {
+public class WelcomeServlet extends WebAppServlet {
 
     @Override
-    protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
         Gather gather = new Gather();
@@ -36,7 +37,6 @@ public class WelcomeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        servletResponse.setContentType("text/xml");
-        servletResponse.getWriter().write(twiMLResponse.toXML());
+        respondTwiML(response, twiMLResponse);
     }
 }

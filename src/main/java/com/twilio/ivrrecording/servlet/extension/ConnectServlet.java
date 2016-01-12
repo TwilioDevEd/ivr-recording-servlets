@@ -3,7 +3,6 @@ package com.twilio.ivrrecording.servlet.extension;
 import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.ivrrecording.servlet.common.Redirect;
 import com.twilio.sdk.verbs.*;
 import com.twilio.sdk.verbs.Number;
 

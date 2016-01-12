@@ -12,10 +12,10 @@ import java.io.IOException;
 public class ShowServlet extends WebAppServlet {
 
     @Override
-    protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        String selectedOption = servletRequest.getParameter("Digits");
+        String selectedOption = request.getParameter("Digits");
 
         TwiMLResponse twiMLResponse = null;
         try {
@@ -27,13 +27,13 @@ public class ShowServlet extends WebAppServlet {
                     twiMLResponse = getPlanets();
                     break;
                 default:
-                    twiMLResponse = com.twilio.ivrrecording.servlet.common.Redirect.toMainMenu();
+                    twiMLResponse = redirectWelcome();
             }
         } catch (TwiMLException e) {
             e.printStackTrace();
         }
 
-        respondTwiML(servletResponse, twiMLResponse);
+        respondTwiML(response, twiMLResponse);
     }
 
     private TwiMLResponse getReturnInstructions() throws TwiMLException {
@@ -78,5 +78,13 @@ public class ShowServlet extends WebAppServlet {
         response.append(gather);
 
         return response;
+    }
+
+    private TwiMLResponse redirectWelcome() throws TwiMLException {
+        TwiMLResponse twiMLResponse = new TwiMLResponse();
+
+        twiMLResponse.append(new Redirect("/ivr/welcome"));
+
+        return twiMLResponse;
     }
 }

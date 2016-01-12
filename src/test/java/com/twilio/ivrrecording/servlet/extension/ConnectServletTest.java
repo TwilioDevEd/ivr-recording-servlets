@@ -67,4 +67,24 @@ public class ConnectServletTest extends BaseTwilioServletTest {
         assertThat(getElement(document, "Dial/Number").getValue(), is(equalTo(number)));
     }
 
+    @Test
+    public void postMethod_WhenAnAgentIsNotFound_ThenRespondsRedirectingToMainMenu()
+            throws Exception {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintWriter printWriter = new PrintWriter(output);
+
+        when(request.getParameter("Digits")).thenReturn("*");
+        when(response.getWriter()).thenReturn(printWriter);
+
+        ConnectServlet servlet = new ConnectServlet(agentRepository);
+        servlet.doPost(request, response);
+
+        printWriter.flush();
+        String content = new String(output.toByteArray(), "UTF-8");
+
+        Document document = getDocument(content);
+
+        assertThatContentTypeIsXML(response);
+        assertThat(getElement(document, "Redirect").getValue(), is(equalTo("/ivr/welcome")));
+    }
 }
