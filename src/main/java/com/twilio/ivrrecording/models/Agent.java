@@ -26,6 +26,11 @@ public class Agent {
         recordings = new ArrayList<Recording>();
     }
 
+    public Agent(long id, String extension, String phoneNumber) {
+        this(extension, phoneNumber);
+        this.id = id;
+    }
+
     public Agent(String extension, String phoneNumber) {
         this();
         this.extension = extension;

@@ -56,5 +56,46 @@ public class ShowServletTest extends BaseTwilioServletTest {
         assertThat(getElement(document, "Hangup"), is(CoreMatchers.<Element>notNullValue()));
     }
 
+    @Test
+    public void postMethod_WhenTheSelectedOptionIs1_WhenTheSelectedOptionIs2_ThenTheResponseContainsGatherAndSay()
+            throws Exception {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintWriter printWriter = new PrintWriter(output);
 
+        when(request.getParameter("Digits")).thenReturn("2");
+        when(response.getWriter()).thenReturn(printWriter);
+
+        ShowServlet servlet = new ShowServlet();
+        servlet.doPost(request, response);
+
+        printWriter.flush();
+        String content = new String(output.toByteArray(), "UTF-8");
+
+        Document document = getDocument(content);
+
+        assertThatContentTypeIsXML(response);
+        assertThat(getElement(document, "Say"), is(CoreMatchers.<Element>nullValue()));
+        assertThat(getAttributeValue(document, "Gather", "action"), is(equalTo("/extensions/connect")));
+    }
+
+    @Test
+    public void postMethod_WhenTheSelectedOptionIsDifferentThan_1_Or_2_ThenTheResponseRedirectsToIVRWelcome()
+            throws Exception {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintWriter printWriter = new PrintWriter(output);
+
+        when(request.getParameter("Digits")).thenReturn("*");
+        when(response.getWriter()).thenReturn(printWriter);
+
+        ShowServlet servlet = new ShowServlet();
+        servlet.doPost(request, response);
+
+        printWriter.flush();
+        String content = new String(output.toByteArray(), "UTF-8");
+
+        Document document = getDocument(content);
+
+        assertThatContentTypeIsXML(response);
+        assertThat(getElement(document, "Redirect").getValue(), is(equalTo("/ivr/welcome")));
+    }
 }

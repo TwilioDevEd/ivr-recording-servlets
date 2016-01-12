@@ -32,6 +32,16 @@
         <servlet-class>com.twilio.ivrrecording.servlet.agent.HangupServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>menu-show</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.menu.ShowServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>extension-connect</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.extension.ConnectServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>agent-list</servlet-name>
         <url-pattern>/</url-pattern>
@@ -52,5 +62,13 @@
     <servlet-mapping>
         <servlet-name>agent-hangup</servlet-name>
         <url-pattern>/agents/hangup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>menu-show</servlet-name>
+        <url-pattern>/menu/show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>extension-connect</servlet-name>
+        <url-pattern>/extensions/connect</url-pattern>
     </servlet-mapping>
 </web-app>

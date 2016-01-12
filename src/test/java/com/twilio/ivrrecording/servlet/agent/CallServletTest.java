@@ -59,7 +59,7 @@ public class CallServletTest extends BaseTwilioServletTest {
 
         assertThatContentTypeIsXML(response);
         assertThat(getAttributeValue(document, "Record", "action"), is(equalTo("/agents/hangup")));
-        assertThat(getAttributeValue(document, "Record", "transcribeCallback"), is(equalTo("/record/create?agentId=1")));
+        assertThat(getAttributeValue(document, "Record", "transcribeCallback"), is(equalTo("/records/create?agentId=1")));
         assertThat(getElement(document, "Hangup"), is(CoreMatchers.<Element>notNullValue()));
     }
 

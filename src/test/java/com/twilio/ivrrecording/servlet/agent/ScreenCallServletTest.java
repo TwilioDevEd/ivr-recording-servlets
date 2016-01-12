@@ -44,7 +44,7 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
 
-        when(request.getParameter("from")).thenReturn("1234567890");
+        when(request.getParameter("From")).thenReturn("1234567890");
         when(response.getWriter()).thenReturn(printWriter);
 
         ScreenCallServlet servlet = new ScreenCallServlet();
@@ -56,7 +56,7 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
         Document document = getDocument(content);
 
         assertThatContentTypeIsXML(response);
-        assertThat(getAttributeValue(document, "Gather", "action"), is(equalTo("/agents/connect")));
+        assertThat(getAttributeValue(document, "Gather", "action"), is(equalTo("/agents/message")));
         assertThat(getElement(document, "Hangup"), is(CoreMatchers.<Element>notNullValue()));
     }
 
@@ -65,7 +65,7 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
 
-        when(request.getParameter("from")).thenReturn("1234567890");
+        when(request.getParameter("From")).thenReturn("1234567890");
         when(response.getWriter()).thenReturn(printWriter);
 
         ScreenCallServlet servlet = new ScreenCallServlet();

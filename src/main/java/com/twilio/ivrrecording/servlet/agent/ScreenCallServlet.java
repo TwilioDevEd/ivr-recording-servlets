@@ -13,7 +13,7 @@ public class ScreenCallServlet extends WebAppServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String from = request.getParameter("from");
+        String from = request.getParameter("From");
 
         String incomingCallMessage = "You have an incoming call from: " + getSpelledPhoneNumber(from);
 
@@ -45,7 +45,6 @@ public class ScreenCallServlet extends WebAppServlet {
     }
 
     private String getSpelledPhoneNumber(String phoneNumber) {
-        char[] f = phoneNumber.toCharArray();
         return String.join(", ", phoneNumber.split(""));
     }
 
