@@ -20,18 +20,20 @@ public class ScreenCallServlet extends WebAppServlet {
         TwiMLResponse twiml = new TwiMLResponse();
 
         Gather gather = new Gather();
-        gather.setAction("/handle-key");
         gather.setNumDigits(1);
         gather.setMethod("POST");
-        gather.setAction("/agent/connect");
+        gather.setAction("/agents/message");
+
         Say sayInGather1 = new Say(incomingCallMessage);
         Say sayInGather2 = new Say("Press any key to accept");
+
         Say say = new Say("Sorry. Did not get your response");
         Hangup hangup = new Hangup();
 
         try {
             gather.append(sayInGather1);
             gather.append(sayInGather2);
+
             twiml.append(gather);
             twiml.append(say);
             twiml.append(hangup);

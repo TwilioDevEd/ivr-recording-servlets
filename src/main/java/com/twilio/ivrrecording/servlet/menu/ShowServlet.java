@@ -1,6 +1,7 @@
 package com.twilio.ivrrecording.servlet.menu;
 
 
+import com.twilio.ivrrecording.servlet.WebAppServlet;
 import com.twilio.sdk.verbs.*;
 
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ShowServlet extends HttpServlet {
+public class ShowServlet extends WebAppServlet {
 
     @Override
     protected void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
@@ -32,8 +33,7 @@ public class ShowServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        servletResponse.setContentType("text/xml");
-        servletResponse.getWriter().write(twiMLResponse.toXML());
+        respondTwiML(servletResponse, twiMLResponse);
     }
 
     private TwiMLResponse getReturnInstructions() throws TwiMLException {
@@ -61,7 +61,7 @@ public class ShowServlet extends HttpServlet {
     private TwiMLResponse getPlanets() throws TwiMLException {
 
         Gather gather = new Gather();
-        gather.setAction("/commuter/connect");
+        gather.setAction("/extensions/connect");
         gather.setNumDigits(1);
 
         Say phrase = new Say(

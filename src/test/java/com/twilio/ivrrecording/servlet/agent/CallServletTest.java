@@ -58,7 +58,7 @@ public class CallServletTest extends BaseTwilioServletTest {
         Document document = getDocument(content);
 
         assertThatContentTypeIsXML(response);
-        assertThat(getAttributeValue(document, "Record", "action"), is(equalTo("/call/hangup")));
+        assertThat(getAttributeValue(document, "Record", "action"), is(equalTo("/agents/hangup")));
         assertThat(getAttributeValue(document, "Record", "transcribeCallback"), is(equalTo("/record/create?agentId=1")));
         assertThat(getElement(document, "Hangup"), is(CoreMatchers.<Element>notNullValue()));
     }

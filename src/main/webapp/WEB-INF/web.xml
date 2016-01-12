@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>agent-connect-message</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.agent.ConnectMessageServlet</servlet-class>
+        <servlet-class>com.twilio.ivrrecording.servlet.agent.MessageServlet</servlet-class>
     </servlet>
 
     <servlet>
@@ -43,7 +43,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>agent-connect-message</servlet-name>
-        <url-pattern>/agents/connect</url-pattern>
+        <url-pattern>/agents/message</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>agent-screen-call</servlet-name>

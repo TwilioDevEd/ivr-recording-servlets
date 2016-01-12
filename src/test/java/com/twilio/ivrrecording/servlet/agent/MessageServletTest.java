@@ -17,13 +17,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnitParamsRunner.class)
-public class ConnectMessageServletTest extends BaseTwilioServletTest {
+public class MessageServletTest extends BaseTwilioServletTest {
     @Mock
     HttpServletRequest request;
 
@@ -41,7 +40,7 @@ public class ConnectMessageServletTest extends BaseTwilioServletTest {
         PrintWriter printWriter = new PrintWriter(output);
         when(response.getWriter()).thenReturn(printWriter);
 
-        ConnectMessageServlet servlet = new ConnectMessageServlet();
+        MessageServlet servlet = new MessageServlet();
         servlet.doPost(request, response);
 
         printWriter.flush();

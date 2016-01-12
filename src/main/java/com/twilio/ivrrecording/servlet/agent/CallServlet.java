@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 public class CallServlet extends WebAppServlet {
 
@@ -17,7 +18,7 @@ public class CallServlet extends WebAppServlet {
         String dialCallStatus = request.getParameter("dialCallStatus");
         String agentId = request.getParameter("agentId");
 
-        if (dialCallStatus == "completed") {
+        if (Objects.equals(dialCallStatus, "completed")) {
             content(response, "");
             return;
         }
@@ -32,8 +33,8 @@ public class CallServlet extends WebAppServlet {
 
         Record record = new Record();
         record.setMaxLength(20);
-        record.setAction("/call/hangup");
-        record.setTranscribeCallback(String.format("/record/create?agentId=%s", agentId));
+        record.setAction("/agents/hangup");
+        record.setTranscribeCallback(String.format("/records/create?agentId=%s", agentId));
 
         Say say2 = new Say("No record received. Goodbye");
         say2.setLanguage("en-GB");

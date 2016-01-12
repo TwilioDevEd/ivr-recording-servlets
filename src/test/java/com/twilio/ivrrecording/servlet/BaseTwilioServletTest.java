@@ -1,25 +1,15 @@
 package com.twilio.ivrrecording.servlet;
 
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import javax.servlet.FilterChain;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.StringReader;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 public abstract class BaseTwilioServletTest {
@@ -46,6 +36,10 @@ public abstract class BaseTwilioServletTest {
             default:
                 return null;
         }
+    }
+
+    protected int countElement(Document document, String path) {
+        return document.getRootElement().getChildren(path).size();
     }
 
     protected String getAttributeValue(Document document, String path, String attrName) {

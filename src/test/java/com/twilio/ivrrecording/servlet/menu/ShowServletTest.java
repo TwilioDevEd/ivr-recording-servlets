@@ -1,13 +1,12 @@
-package com.twilio.ivrrecording.servlet.agent;
+package com.twilio.ivrrecording.servlet.menu;
 
 import com.twilio.ivrrecording.servlet.BaseTwilioServletTest;
-import junitparams.JUnitParamsRunner;
+import com.twilio.ivrrecording.servlet.agent.ScreenCallServlet;
 import org.hamcrest.CoreMatchers;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -20,14 +19,10 @@ import java.io.PrintWriter;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.when;
 
-@RunWith(JUnitParamsRunner.class)
-public class ScreenCallServletTest extends BaseTwilioServletTest {
-
+public class ShowServletTest extends BaseTwilioServletTest {
     @Mock
     HttpServletRequest request;
 
@@ -40,14 +35,15 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
     }
 
     @Test
-    public void postMethod_ResponseContainsGatherAndHangup() throws Exception {
+    public void postMethod_WhenTheSelectedOptionIs1_ThenTheResponseContainsSayTwiceAndAHangup()
+            throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintWriter printWriter = new PrintWriter(output);
 
-        when(request.getParameter("from")).thenReturn("1234567890");
+        when(request.getParameter("Digits")).thenReturn("1");
         when(response.getWriter()).thenReturn(printWriter);
 
-        ScreenCallServlet servlet = new ScreenCallServlet();
+        ShowServlet servlet = new ShowServlet();
         servlet.doPost(request, response);
 
         printWriter.flush();
@@ -56,24 +52,9 @@ public class ScreenCallServletTest extends BaseTwilioServletTest {
         Document document = getDocument(content);
 
         assertThatContentTypeIsXML(response);
-        assertThat(getAttributeValue(document, "Gather", "action"), is(equalTo("/agents/connect")));
+        assertThat(countElement(document, "Say"), is(equalTo(2)));
         assertThat(getElement(document, "Hangup"), is(CoreMatchers.<Element>notNullValue()));
     }
 
-    @Test
-    public void postMethod_ResponseContainsSpelledPhoneNumber() throws Exception {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-        PrintWriter printWriter = new PrintWriter(output);
 
-        when(request.getParameter("from")).thenReturn("1234567890");
-        when(response.getWriter()).thenReturn(printWriter);
-
-        ScreenCallServlet servlet = new ScreenCallServlet();
-        servlet.doPost(request, response);
-
-        printWriter.flush();
-        String content = new String(output.toByteArray(), "UTF-8");
-
-        assertThat(content, containsString("1, 2, 3, 4, 5, 6, 7, 8, 9, 0"));
-    }
 }
