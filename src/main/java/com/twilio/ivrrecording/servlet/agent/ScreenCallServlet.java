@@ -21,7 +21,6 @@ public class ScreenCallServlet extends WebAppServlet {
 
         Gather gather = new Gather();
         gather.setNumDigits(1);
-        gather.setMethod("POST");
         gather.setAction("/agents/message");
 
         Say sayInGather1 = new Say(incomingCallMessage);

@@ -23,7 +23,7 @@ public class CallServlet extends WebAppServlet {
             return;
         }
 
-        TwiMLResponse twiml = new TwiMLResponse();
+        TwiMLResponse twiMLResponse = new TwiMLResponse();
 
         Say say1 = new Say("It appears that no agent is available. " +
                 "Please leave a message after the beep");
@@ -43,15 +43,15 @@ public class CallServlet extends WebAppServlet {
         Hangup hangup = new Hangup();
 
         try {
-            twiml.append(say1);
-            twiml.append(record);
-            twiml.append(say2);
-            twiml.append(hangup);
+            twiMLResponse.append(say1);
+            twiMLResponse.append(record);
+            twiMLResponse.append(say2);
+            twiMLResponse.append(hangup);
         } catch (TwiMLException e) {
             e.printStackTrace();
         }
 
-        respondTwiML(response, twiml);
+        respondTwiML(response, twiMLResponse);
 
     }
 
