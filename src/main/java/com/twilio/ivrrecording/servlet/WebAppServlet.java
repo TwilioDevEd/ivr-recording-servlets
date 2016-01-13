@@ -16,7 +16,7 @@ public class WebAppServlet extends HttpServlet {
         response.getWriter().write(twiMLResponse.toXML());
     }
 
-    protected void content(HttpServletResponse response, String content) throws IOException {
+    protected void respondContent(HttpServletResponse response, String content) throws IOException {
         response.getWriter().write(content);
     }
 }

@@ -19,7 +19,7 @@ public class CallServlet extends WebAppServlet {
         String agentId = request.getParameter("agentId");
 
         if (Objects.equals(dialCallStatus, "completed")) {
-            content(response, "");
+            respondContent(response, "");
             return;
         }
 
