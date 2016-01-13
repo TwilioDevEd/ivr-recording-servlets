@@ -44,12 +44,12 @@
 
     <servlet>
         <servlet-name>ivr-welcome</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.ivr.welcome</servlet-class>
+        <servlet-class>com.twilio.ivrrecording.servlet.ivr.WelcomeServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>record-create</servlet-name>
-        <servlet-class>com.twilio.ivrrecording.servlet.record.create</servlet-class>
+        <servlet-class>com.twilio.ivrrecording.servlet.record.CreateServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
