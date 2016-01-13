@@ -29,9 +29,9 @@ public class CreateServlet extends WebAppServlet {
             throws IOException {
 
         String agentId = request.getParameter("agentId");
-        String caller = request.getParameter("caller");
-        String transcriptionText = request.getParameter("transcriptionText");
-        String recordingUrl = request.getParameter("recordingUrl");
+        String caller = request.getParameter("Caller");
+        String transcriptionText = request.getParameter("TranscriptionText");
+        String recordingUrl = request.getParameter("RecordingUrl");
 
         Agent agent = agentRepository.find(Long.valueOf(agentId));
 

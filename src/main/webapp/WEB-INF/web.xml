@@ -87,6 +87,6 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>record-create</servlet-name>
-        <url-pattern>/record/create</url-pattern>
+        <url-pattern>/records/create</url-pattern>
     </servlet-mapping>
 </web-app>

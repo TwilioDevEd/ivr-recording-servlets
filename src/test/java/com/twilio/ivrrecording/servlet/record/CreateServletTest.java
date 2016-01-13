@@ -49,9 +49,9 @@ public class CreateServletTest extends BaseTwilioServletTest {
         PrintWriter printWriter = new PrintWriter(output);
 
         when(request.getParameter("agentId")).thenReturn("1");
-        when(request.getParameter("caller")).thenReturn("caller");
-        when(request.getParameter("transcriptionText")).thenReturn("transcription");
-        when(request.getParameter("recordingUrl")).thenReturn("http://web.com");
+        when(request.getParameter("Caller")).thenReturn("+23334444");
+        when(request.getParameter("TranscriptionText")).thenReturn("transcription");
+        when(request.getParameter("RecordingUrl")).thenReturn("http://web.com");
         when(response.getWriter()).thenReturn(printWriter);
         when(agentRepository.find(any(Long.class))).thenReturn(new Agent(1, "Brodo", "+1223334"));
 

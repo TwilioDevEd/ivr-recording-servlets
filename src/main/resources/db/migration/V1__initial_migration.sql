@@ -6,7 +6,7 @@ CREATE TABLE agents (
 
 CREATE TABLE recordings (
   id SERIAL UNIQUE NOT NULL PRIMARY KEY,
-  url VARCHAR(50) NOT NULL,
+  url VARCHAR(255) NOT NULL,
   transcription text NULL,
   phone_number VARCHAR(50) NOT NULL,
   agent_id     INT4          NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE recordings (
 );
 
 INSERT INTO agents(extension, phone_number) VALUES ('Brodo', '+15552483591');
-INSERT INTO agents(extension, phone_number) VALUES ('Dugobah', '+15558675309');
-INSERT INTO agents(extension, phone_number) VALUES ('113', '+15553185602');
+INSERT INTO agents(extension, phone_number) VALUES ('Dagobah', '+15558675309');
+INSERT INTO agents(extension, phone_number) VALUES ('Oober', '+15553185602');

@@ -56,6 +56,7 @@
     </div>
 
     <footer class="container">
+        <hr/>
         Made with <i class="fa fa-heart"></i> by your pals
         <a href="http://www.twilio.com">@twilio</a>
     </footer>
