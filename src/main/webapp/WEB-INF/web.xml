@@ -42,6 +42,16 @@
         <servlet-class>com.twilio.ivrrecording.servlet.extension.ConnectServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ivr-welcome</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.ivr.welcome</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>record-create</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.record.create</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>agent-list</servlet-name>
         <url-pattern>/</url-pattern>
@@ -70,5 +80,13 @@
     <servlet-mapping>
         <servlet-name>extension-connect</servlet-name>
         <url-pattern>/extensions/connect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ivr-welcome</servlet-name>
+        <url-pattern>/ivr/welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>record-create</servlet-name>
+        <url-pattern>/record/create</url-pattern>
     </servlet-mapping>
 </web-app>

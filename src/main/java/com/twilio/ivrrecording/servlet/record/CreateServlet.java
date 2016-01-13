@@ -1,6 +1,8 @@
 package com.twilio.ivrrecording.servlet.record;
 
+import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.models.Recording;
+import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.repositories.RecordingRepository;
 import com.twilio.ivrrecording.servlet.WebAppServlet;
 
@@ -11,13 +13,15 @@ import java.io.IOException;
 public class CreateServlet extends WebAppServlet {
 
     private RecordingRepository recordingRepository;
+    private AgentRepository agentRepository;
 
     public CreateServlet() {
-        this(new RecordingRepository());
+        this(new RecordingRepository(), new AgentRepository());
     }
 
-    public CreateServlet(RecordingRepository recordingRepository) {
+    public CreateServlet(RecordingRepository recordingRepository, AgentRepository agentRepository) {
         this.recordingRepository = recordingRepository;
+        this.agentRepository = agentRepository;
     }
 
     @Override
@@ -29,8 +33,10 @@ public class CreateServlet extends WebAppServlet {
         String transcriptionText = request.getParameter("transcriptionText");
         String recordingUrl = request.getParameter("recordingUrl");
 
+        Agent agent = agentRepository.find(Long.valueOf(agentId));
+
         recordingRepository.create(
-                new Recording(recordingUrl, transcriptionText, caller, Long.valueOf(agentId)));
+                new Recording(recordingUrl, transcriptionText, caller, agent));
 
         respondContent(response, "Recording saved");
 

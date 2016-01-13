@@ -2,10 +2,9 @@ package com.twilio.ivrrecording.servlet.record;
 
 import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.models.Recording;
+import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.repositories.RecordingRepository;
 import com.twilio.ivrrecording.servlet.BaseTwilioServletTest;
-import com.twilio.ivrrecording.servlet.extension.ConnectServlet;
-import org.jdom2.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -21,7 +20,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,6 +33,9 @@ public class CreateServletTest extends BaseTwilioServletTest {
 
     @Mock
     RecordingRepository recordingRepository;
+
+    @Mock
+    AgentRepository agentRepository;
 
     @Before
     public void setUp() throws IOException {
@@ -52,8 +53,9 @@ public class CreateServletTest extends BaseTwilioServletTest {
         when(request.getParameter("transcriptionText")).thenReturn("transcription");
         when(request.getParameter("recordingUrl")).thenReturn("http://web.com");
         when(response.getWriter()).thenReturn(printWriter);
+        when(agentRepository.find(any(Long.class))).thenReturn(new Agent(1, "Brodo", "+1223334"));
 
-        CreateServlet servlet = new CreateServlet(recordingRepository);
+        CreateServlet servlet = new CreateServlet(recordingRepository, agentRepository);
         servlet.doPost(request, response);
 
         printWriter.flush();

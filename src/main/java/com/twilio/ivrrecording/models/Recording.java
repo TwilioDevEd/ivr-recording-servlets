@@ -20,17 +20,18 @@ public class Recording {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "agent_id")
-    private long agentId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "agent_id")
+    private Agent agent;
 
     public Recording() {
     }
 
-    public Recording(String url, String transcription, String phoneNumber, long agentId) {
+    public Recording(String url, String transcription, String phoneNumber, Agent agent) {
         this.url = url;
         this.transcription = transcription;
         this.phoneNumber = phoneNumber;
-        this.agentId = agentId;
+        this.agent = agent;
     }
 
     public long getId() {
@@ -65,11 +66,11 @@ public class Recording {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getAgentId() {
-        return agentId;
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setAgentId(long agentId) {
-        this.agentId = agentId;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 }

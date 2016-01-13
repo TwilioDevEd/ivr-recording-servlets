@@ -63,14 +63,14 @@ public class Agent {
 
     public void addReservation(Recording reservation) {
 
-        if (this.recordings.add(reservation) && reservation.getAgentId() != this.id) {
-            reservation.setAgentId(this.id);
+        if (this.recordings.add(reservation) && reservation.getAgent() != this) {
+            reservation.setAgent(this);
         }
     }
 
     public void removeReservation(Recording reservation) {
-        if (this.recordings.remove(reservation) && reservation.getAgentId() == this.id) {
-            reservation.setAgentId(this.id);
+        if (this.recordings.remove(reservation) && reservation.getAgent() == this) {
+            reservation.setAgent(this);
         }
     }
 
