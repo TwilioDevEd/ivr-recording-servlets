@@ -3,6 +3,7 @@ package com.twilio.ivrrecording.repositories;
 
 import com.twilio.ivrrecording.models.Agent;
 
+import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 public class AgentRepository extends Repository<Agent> {
@@ -14,11 +15,13 @@ public class AgentRepository extends Repository<Agent> {
 
         Agent agent = null;
         try {
+            EntityManager em = getEm();
             agent = (Agent)
                     em.createQuery("SELECT e FROM Agent e WHERE e.extension = :extension")
                             .setMaxResults(1)
                             .setParameter("extension", extension)
                             .getSingleResult();
+            em.close();
         } catch (NoResultException ex) {
             System.out.println(ex.getMessage());
         }
