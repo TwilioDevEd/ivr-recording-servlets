@@ -46,5 +46,4 @@ public class ScreenCallServlet extends WebAppServlet {
     private String getSpelledPhoneNumber(String phoneNumber) {
         return String.join(", ", phoneNumber.split(""));
     }
-
 }

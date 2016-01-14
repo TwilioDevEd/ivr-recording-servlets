@@ -52,7 +52,5 @@ public class CallServlet extends WebAppServlet {
         }
 
         respondTwiML(response, twiMLResponse);
-
     }
-
 }

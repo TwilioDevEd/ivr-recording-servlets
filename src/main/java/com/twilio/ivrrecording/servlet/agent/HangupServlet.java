@@ -31,5 +31,4 @@ public class HangupServlet extends WebAppServlet {
 
         respondTwiML(response, twiml);
     }
-
 }

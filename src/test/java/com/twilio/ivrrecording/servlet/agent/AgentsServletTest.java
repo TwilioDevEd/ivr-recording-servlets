@@ -59,6 +59,4 @@ public class AgentsServletTest {
         verify(request).getRequestDispatcher("/agents.jsp");
         verify(request).setAttribute("agents", agents);
     }
-
-
 }

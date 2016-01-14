@@ -29,7 +29,5 @@ public class AgentsServlet extends WebAppServlet {
 
         request.setAttribute("agents", agents);
         request.getRequestDispatcher("/agents.jsp").forward(request, response);
-
     }
-
 }
