@@ -15,7 +15,7 @@ public class CallServlet extends WebAppServlet {
             throws ServletException, IOException {
 
 
-        String dialCallStatus = request.getParameter("dialCallStatus");
+        String dialCallStatus = request.getParameter("DialCallStatus");
         String agentId = request.getParameter("agentId");
 
         if (Objects.equals(dialCallStatus, "completed")) {
