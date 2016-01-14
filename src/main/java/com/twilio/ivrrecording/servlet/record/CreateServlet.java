@@ -39,6 +39,5 @@ public class CreateServlet extends WebAppServlet {
                 new Recording(recordingUrl, transcriptionText, caller, agent));
 
         respondContent(response, "Recording saved");
-
     }
 }
