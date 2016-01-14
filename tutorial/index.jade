@@ -40,7 +40,7 @@
       When our caller chooses a planet we need to figure out where to route the
       call. Depending on her input we will route this call to an extension. In
       this case an extension will be used to look up an Agent, so any string
-      can be used to define an extension. 
+      can be used to define an extension.
 
       Once we lookup the `Agent`, we can `<Dial>` the agent's phone number and try
       to connect the call. Let's look at those steps next.
@@ -110,7 +110,7 @@
 
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/agent/ScreenCallServlet.java',
-  data-highlight='16-48')
+  data-highlight='13-48')
     :markdown
       ## The Agent screens the call
 
@@ -143,7 +143,7 @@
       which will tell us if the call was successful. If it was "completed" we
       hangup — otherwise we need to `<Say>` a quick prompt and then
       [Record](//www.twilio.com/docs/api/twiml/record) a voicemail from
-      the caller. 
+      the caller.
 
       We also specify an `action` for `<Record>`. This route will be
       called after the call (and hence the recording) has finished. The route
@@ -163,7 +163,7 @@
 
       When we tell Twilio to Record we have a few
       [options](//www.twilio.com/docs/api/twiml/record#attributes) we can
-      pass to the `Record` verb. 
+      pass to the `Record` verb.
 
       Here we instruct Record to stop the recording at 20 seconds, to
       [`transcribe`](//www.twilio.com/docs/api/twiml/record#attributes-transcribe)
