@@ -46,7 +46,7 @@ public class CallServletTest extends BaseTwilioServletTest {
         PrintWriter printWriter = new PrintWriter(output);
 
         when(request.getParameter("agentId")).thenReturn("1");
-        when(request.getParameter("dialCallStatus")).thenReturn("busy");
+        when(request.getParameter("DialCallStatus")).thenReturn("busy");
         when(response.getWriter()).thenReturn(printWriter);
 
         CallServlet servlet = new CallServlet();
@@ -69,7 +69,7 @@ public class CallServletTest extends BaseTwilioServletTest {
         PrintWriter printWriter = new PrintWriter(output);
 
         when(request.getParameter("agentId")).thenReturn("1");
-        when(request.getParameter("dialCallStatus")).thenReturn("completed");
+        when(request.getParameter("DialCallStatus")).thenReturn("completed");
         when(response.getWriter()).thenReturn(printWriter);
 
         CallServlet servlet = new CallServlet();
