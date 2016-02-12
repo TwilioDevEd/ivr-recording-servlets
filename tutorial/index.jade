@@ -85,7 +85,7 @@
 
       ```
 
-      We have a handle or `extension` that we can use to lookup and Agent, and
+      We have a handle or `extension` that we can use to lookup an Agent, and
       we have a `phoneNumber` that we will call.
 
 
@@ -97,7 +97,7 @@
 
       By passing a `url` to the `Dial` > [`Number`](//www.twilio.com/docs/api/twiml/number)
       TwiML tag, we are telling Twilio to make a POST request to the
-      `agents/call` route **after** the agent has picked up but **before**
+      `agents/call` route _after_ the agent has picked up but _before_
       connecting the two parties.
 
       Essentially we are telling Twilio to execute some TwiML that only the
@@ -118,13 +118,12 @@
       [Gather](https://www.twilio.com/docs/api/twiml/gather) verb to ask
       them if they want to accept the call.
 
-      If the agent responds by entering any digit the
+      If the agent enters any digit the
       response will be processed by our `agents/message` route (below)
       which will `<Say>` a quick message, then continue with the original
       `<Dial>` command and connect the two parties.
 
-      If the agent instead does not respond, the processing of the
-      caller's `<Dial>` verb will end and Twilio will look to the URL we
+      If the agent instead does not respond, the `<Dial>` process will end and Twilio will look to the URL we
       provided for more instructions - we'll look at that route next.
 
       ---
