@@ -48,7 +48,7 @@ Twilio and Java | Servlets.
 
 1. Run the application.
     ```bash
-    $ ./gradew jettyRun
+    $ ./gradlew jettyRun
     ```
 
 1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
