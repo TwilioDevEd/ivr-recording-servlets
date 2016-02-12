@@ -44,9 +44,6 @@ to connect the call. Let&#39;s look at those steps next.</p>
 <hr>
 <p><strong>See Also:</strong></p>
 <ul>
-<li><a href="//www.twilio.com/blog/2012/02/twilio-for-net-developers-part-4-using-the-twilio-twiml-helper-library.html">Using the Twilio.TwiML Helper
-Library</a></li>
-<li><a href="//github.com/twilio/twilio-csharp/wiki/Twilio.TwiML">Twilio.TwiML</a></li>
 <li><a href="//www.twilio.com/docs/api/twiml/dial">TwiML Dial</a></li>
 </ul>
 </div><div data-file="src/main/java/com/twilio/ivrrecording/servlet/extension/ConnectServlet.java" data-highlight="70-80" class="step"><h2 id="looking-up-an-agent">Looking up an Agent</h2>
@@ -90,12 +87,11 @@ agent will hear. Let&#39;s look at that next.</p>
 <p>When our agent picks up their phone, we use a
 <a href="https://www.twilio.com/docs/api/twiml/gather">Gather</a> verb to ask
 them if they want to accept the call.</p>
-<p>If the agent responds by entering any digit the
+<p>If the agent enters any digit the
 response will be processed by our <code>agents/message</code> route (below)
 which will <code>&lt;Say&gt;</code> a quick message, then continue with the original
 <code>&lt;Dial&gt;</code> command and connect the two parties.</p>
-<p>If the agent instead does not respond, the processing of the
-caller&#39;s <code>&lt;Dial&gt;</code> verb will end and Twilio will look to the URL we
+<p>If the agent instead does not respond, the <code>&lt;Dial&gt;</code> process will end and Twilio will look to the URL we
 provided for more instructions - we&#39;ll look at that route next.</p>
 <hr>
 <p><strong>See Also:</strong></p>
