@@ -1,8 +1,9 @@
 # IVR Call Recording and Agent Conference. Level: Intermediate. Powered by Twilio - Java | Servlets
 
 An example application implementing an automated phone line using
-Twilio and Java | Servlets.
+Twilio and Java Servlets.
 
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/java/servlets)!
 
 [![Build Status](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets.svg)](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets)
 
