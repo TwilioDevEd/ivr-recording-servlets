@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.*;
-import com.twilio.sdk.verbs.Number;
+import com.twilio.twiml.*;
+import com.twilio.twiml.Number;
 
 public class ConnectServlet extends WebAppServlet {
 
@@ -33,38 +33,33 @@ public class ConnectServlet extends WebAppServlet {
 
     Agent agent = findAgentByExtension(selectedOption);
     if (agent == null) {
-      try {
-        redirectToMenu(response);
-      } catch (TwiMLException e) {
-        e.printStackTrace();
-      }
+      redirectToMenu(response);
     } else {
-      TwiMLResponse twiMLResponse = new TwiMLResponse();
-      Say say = new Say("You'll be connected shortly to your planet.");
-      say.setVoice("alice");
-      say.setLanguage("en-GB");
+      Say say = new Say.Builder("You'll be connected shortly to your planet.")
+          .voice(Say.Voice.ALICE)
+          .language(Say.Language.EN_GB)
+          .build();
 
-      Dial dial = new Dial();
-      dial.setAction(String.format("/agents/call?agentId=%s", agent.getId()));
+      Number number = new Number.Builder(agent.getPhoneNumber())
+          .url("/agents/screen-call")
+          .build();
 
-      Number number = new Number(agent.getPhoneNumber());
-      number.setUrl("/agents/screen-call");
+      Dial dial = new Dial.Builder()
+          .action(String.format("/agents/call?agentId=%s", agent.getId()))
+          .number(number)
+          .build();
 
-      try {
-        dial.append(number);
-        twiMLResponse.append(dial);
-      } catch (TwiMLException e) {
-        e.printStackTrace();
-      }
-      respondTwiML(response, twiMLResponse);
+      VoiceResponse voiceResponse = new VoiceResponse.Builder().say(say).dial(dial).build();
+
+      respondTwiML(response, voiceResponse);
     }
   }
 
-  private void redirectToMenu(HttpServletResponse response) throws TwiMLException, IOException {
-    TwiMLResponse twiMLResponse = new TwiMLResponse();
-    twiMLResponse.append(new com.twilio.sdk.verbs.Redirect("/ivr/welcome"));
+  private void redirectToMenu(HttpServletResponse response) throws IOException {
+    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
+    VoiceResponse voiceResponse = new VoiceResponse.Builder().redirect(redirect).build();
 
-    respondTwiML(response, twiMLResponse);
+    respondTwiML(response, voiceResponse);
   }
 
   private Agent findAgentByExtension(String extension) {

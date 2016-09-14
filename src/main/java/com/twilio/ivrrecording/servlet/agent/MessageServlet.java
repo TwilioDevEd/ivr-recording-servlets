@@ -7,25 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.Say;
-import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class MessageServlet extends WebAppServlet {
 
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    Say say = new Say.Builder("Connecting you to the extraterrestrial in distress").build();
 
-    TwiMLResponse twiml = new TwiMLResponse();
+    VoiceResponse voiceResponse = new VoiceResponse.Builder().say(say).build();
 
-    Say say = new Say("Connecting you to the extraterrestrial in distress");
-
-    try {
-      twiml.append(say);
-    } catch (TwiMLException e) {
-      e.printStackTrace();
-    }
-
-    respondTwiML(response, twiml);
+    respondTwiML(response, voiceResponse);
   }
 }

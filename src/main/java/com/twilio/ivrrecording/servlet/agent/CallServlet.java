@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.*;
+import com.twilio.twiml.Hangup;
+import com.twilio.twiml.Record;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class CallServlet extends WebAppServlet {
 
@@ -22,34 +25,32 @@ public class CallServlet extends WebAppServlet {
       return;
     }
 
-    TwiMLResponse twiMLResponse = new TwiMLResponse();
+    Say say1 = new Say.Builder(
+        "It appears that no agent is available. " + "Please leave a message after the beep")
+            .language(Say.Language.EN_GB)
+            .voice(Say.Voice.ALICE)
+            .build();
 
-    Say say1 = new Say(
-        "It appears that no agent is available. " + "Please leave a message after the beep");
+    Record record = new Record.Builder()
+        .maxLength(20)
+        .action("/agents/hangup")
+        .transcribeCallback(String.format("/records/create?agentId=%s", agentId))
+        .build();
 
-    say1.setLanguage("en-GB");
-    say1.setVoice("alice");
-
-    Record record = new Record();
-    record.setMaxLength(20);
-    record.setAction("/agents/hangup");
-    record.setTranscribeCallback(String.format("/records/create?agentId=%s", agentId));
-
-    Say say2 = new Say("No record received. Goodbye");
-    say2.setLanguage("en-GB");
-    say2.setVoice("alice");
+    Say say2 = new Say.Builder("No record received. Goodbye")
+        .language(Say.Language.EN_GB)
+        .voice(Say.Voice.ALICE)
+        .build();
 
     Hangup hangup = new Hangup();
 
-    try {
-      twiMLResponse.append(say1);
-      twiMLResponse.append(record);
-      twiMLResponse.append(say2);
-      twiMLResponse.append(hangup);
-    } catch (TwiMLException e) {
-      e.printStackTrace();
-    }
+    VoiceResponse voiceResponse = new VoiceResponse.Builder()
+        .say(say1)
+        .record(record)
+        .say(say2)
+        .hangup(hangup)
+        .build();
 
-    respondTwiML(response, twiMLResponse);
+    respondTwiML(response, voiceResponse);
   }
 }
