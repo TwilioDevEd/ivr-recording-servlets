@@ -1,34 +1,29 @@
 package com.twilio.ivrrecording.servlet.agent;
 
-import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.*;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import com.twilio.ivrrecording.servlet.WebAppServlet;
+import com.twilio.twiml.Hangup;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class HangupServlet extends WebAppServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    Say say = new Say.Builder("Thanks for your message. Goodbye")
+        .language(Say.Language.EN_GB)
+        .voice(Say.Voice.ALICE)
+        .build();
 
-        TwiMLResponse twiml = new TwiMLResponse();
+    Hangup hangup = new Hangup();
 
-        Say say = new Say("Thanks for your message. Goodbye");
+    VoiceResponse voiceResponse = new VoiceResponse.Builder().say(say).hangup(hangup).build();
 
-        say.setLanguage("en-GB");
-        say.setVoice("alice");
-
-        Hangup hangup = new Hangup();
-
-        try {
-            twiml.append(say);
-            twiml.append(hangup);
-        } catch (TwiMLException e) {
-            e.printStackTrace();
-        }
-
-        respondTwiML(response, twiml);
-    }
+    respondTwiML(response, voiceResponse);
+  }
 }

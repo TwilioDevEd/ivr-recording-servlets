@@ -1,90 +1,82 @@
 package com.twilio.ivrrecording.servlet.menu;
 
 
-import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.*;
+import java.io.IOException;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import com.twilio.ivrrecording.servlet.WebAppServlet;
+import com.twilio.twiml.*;
 
 public class ShowServlet extends WebAppServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws IOException {
 
-        String selectedOption = request.getParameter("Digits");
+    String selectedOption = request.getParameter("Digits");
 
-        TwiMLResponse twiMLResponse = null;
-        try {
-            switch (selectedOption) {
-                case "1":
-                    twiMLResponse = getReturnInstructions();
-                    break;
-                case "2":
-                    twiMLResponse = getPlanets();
-                    break;
-                default:
-                    twiMLResponse = redirectWelcome();
-            }
-        } catch (TwiMLException e) {
-            e.printStackTrace();
-        }
+    VoiceResponse twiMLResponse = null;
 
-        respondTwiML(response, twiMLResponse);
+    switch (selectedOption) {
+      case "1":
+        twiMLResponse = getReturnInstructions();
+        break;
+      case "2":
+        twiMLResponse = getPlanets();
+        break;
+      default:
+        twiMLResponse = redirectWelcome();
     }
 
-    private TwiMLResponse getReturnInstructions() throws TwiMLException {
+    respondTwiML(response, twiMLResponse);
+  }
 
-        TwiMLResponse response = new TwiMLResponse();
-        Say firstPhrase = new Say(
-                "To get to your extraction point, get on your bike and go down " +
-                        "the street. Then Left down an alley. Avoid the police cars. Turn left " +
-                        "into an unfinished housing development. Fly over the roadblock. Go " +
-                        "passed the moon. Soon after you will see your mother ship.");
-        firstPhrase.setVoice("Alice");
-        firstPhrase.setLanguage("en-GB");
+  private VoiceResponse getReturnInstructions() {
+    Say firstPhrase =
+        new Say.Builder("To get to your extraction point, get on your bike and go down "
+            + "the street. Then Left down an alley. Avoid the police cars. Turn left "
+            + "into an unfinished housing development. Fly over the roadblock. Go "
+            + "passed the moon. Soon after you will see your mother ship.").voice(Say.Voice.ALICE)
+                .language(Say.Language.EN_GB).build();
 
-        Say secondPhrase = new Say(
-                "Thank you for calling the ET Phone Home Service - the " +
-                        "adventurous alien's first choice in intergalactic travel");
+    Say secondPhrase = new Say.Builder("Thank you for calling the ET Phone Home Service - the "
+        + "adventurous alien's first choice in intergalactic travel").build();
 
-        response.append(firstPhrase);
-        response.append(secondPhrase);
-        response.append(new Hangup());
+    Hangup hangup = new Hangup();
 
-        return response;
-    }
+    VoiceResponse voiceResponse =
+        new VoiceResponse.Builder().say(firstPhrase).say(secondPhrase).hangup(hangup).build();
 
-    private TwiMLResponse getPlanets() throws TwiMLException {
+    return voiceResponse;
+  }
 
-        Gather gather = new Gather();
-        gather.setAction("/extensions/connect");
-        gather.setNumDigits(1);
+  private VoiceResponse getPlanets() {
+    Say phrase = new Say.Builder("To call the planet Broh doe As O G, press 2. To call the planet "
+        + "DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To "
+        + "go back to the main menu, press the star key ")
+            .voice(Say.Voice.ALICE)
+            .language(Say.Language.EN_GB)
+            .loop(3)
+            .build();
 
-        Say phrase = new Say(
-                "To call the planet Broh doe As O G, press 2. To call the planet " +
-                        "DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To " +
-                        "go back to the main menu, press the star key ");
-        phrase.setVoice("alice");
-        phrase.setLanguage("en-GB");
-        phrase.setLoop(3);
+    Gather gather = new Gather.Builder()
+        .say(phrase)
+        .action("/extensions/connect")
+        .numDigits(1)
+        .build();
 
-        gather.append(phrase);
+    VoiceResponse voiceResponse = new VoiceResponse.Builder().gather(gather).build();
 
-        TwiMLResponse response = new TwiMLResponse();
-        response.append(gather);
+    return voiceResponse;
+  }
 
-        return response;
-    }
+  private VoiceResponse redirectWelcome() {
+    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
 
-    private TwiMLResponse redirectWelcome() throws TwiMLException {
-        TwiMLResponse twiMLResponse = new TwiMLResponse();
+    VoiceResponse voiceResponse= new VoiceResponse.Builder().redirect(redirect).build();
 
-        twiMLResponse.append(new Redirect("/ivr/welcome"));
-
-        return twiMLResponse;
-    }
+    return voiceResponse;
+  }
 }
