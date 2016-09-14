@@ -33,7 +33,7 @@
       * [Twilio Java helper library](//www.twilio.com/docs/java/install)
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/extension/ConnectServlet.java',
-  data-highlight='27-60')
+  data-highlight='38-54')
     :markdown
       ## Route the call to an agent
 
@@ -52,7 +52,7 @@
 
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/extension/ConnectServlet.java',
-  data-highlight='70-80')
+  data-highlight='65-74')
     :markdown
       ## Looking up an Agent
 
@@ -86,7 +86,7 @@
       we have a `phoneNumber` that we will call.
 
 
-  .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/extension/ConnectServlet.java', data-highlight='41-58')
+  .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/extension/ConnectServlet.java', data-highlight='38-54')
     :markdown
       ## Call the Agent
 
@@ -94,7 +94,7 @@
 
       By passing a `url` to the `Dial` > [`Number`](//www.twilio.com/docs/api/twiml/number)
       TwiML tag, we are telling Twilio to make a POST request to the
-      `agents/call` route _after_ the agent has picked up but _before_
+      `agents/screen-call` route _after_ the agent has picked up but _before_
       connecting the two parties.
 
       Essentially we are telling Twilio to execute some TwiML that only the
@@ -107,7 +107,7 @@
 
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/agent/ScreenCallServlet.java',
-  data-highlight='13-48')
+  data-highlight='20-41')
     :markdown
       ## The Agent screens the call
 
@@ -130,7 +130,7 @@
 
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/agent/CallServlet.java',
-  data-highlight='16-54')
+  data-highlight='20-54')
     :markdown
       ## Send the Caller to Voicemail
 
@@ -178,7 +178,7 @@
       * [Twilio transcribeCallback](//www.twilio.com/docs/api/twiml/record#attributes-transcribe-callback)
 
   .step(data-file='src/main/java/com/twilio/ivrrecording/servlet/agent/AgentsServlet.java',
-  data-highlight='28-31')
+  data-highlight='29-32')
     :markdown
       ## View an Agent's Voicemails
 
@@ -218,6 +218,5 @@
       ### Did this help?
 
       Thanks for checking out this tutorial! If you have any feedback
-      to share with us, we'd love to hear it. Tweet
-      [@twilio](//twitter.com/twilio) to let us know what you
-      think.
+      to share with us, we'd love to hear it.
+      [Contact the Twilio Developer Education Team](mailto:deved-oss@twilio.com) to let us know what you think.
