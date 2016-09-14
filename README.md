@@ -1,8 +1,13 @@
+<a href="https://www.twilio.com">
+  <img src="https://static0.twilio.com/marketing/bundles/marketing/img/logos/wordmark-red.svg" alt="Twilio" width="250" />
+</a>
+
 # IVR Call Recording and Agent Conference. Level: Intermediate. Powered by Twilio - Java | Servlets
 
 An example application implementing an automated phone line using
-Twilio and Java | Servlets.
+Twilio and Java Servlets.
 
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/java/servlets)!
 
 [![Build Status](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets.svg)](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets)
 
@@ -17,18 +22,18 @@ Twilio and Java | Servlets.
 1. Create the database.
 
     ```bash
-    $ createdb airtng-servlets
+    $ createdb ivr-recording
 
     ```
   _The application uses PostgreSQL as the persistence layer. If you
   don't have it already, you should install it. The easiest way is by
   using [Postgres.app](http://postgresapp.com/)._
 
-1. Edit the sample configuration file `.environment` to match your database       configuration:
+1. Edit the sample configuration file `.environment` to match your database configuration:
     ```
     export DB_USERNAME=your_db_username
     export DB_PASSWORD=your_db_password
-    export JDBC_URL=jdbc:postgresql://localhost:5432/airtng-servlets
+    export JDBC_URL=jdbc:postgresql://localhost:5432/ivr-recording
     ```
 
   Once you have edited the `.environment` file, if you are using a UNIX operating system,
@@ -48,7 +53,7 @@ Twilio and Java | Servlets.
 
 1. Run the application.
     ```bash
-    $ ./gradew jettyRun
+    $ ./gradlew jettyRun
     ```
 
 1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)

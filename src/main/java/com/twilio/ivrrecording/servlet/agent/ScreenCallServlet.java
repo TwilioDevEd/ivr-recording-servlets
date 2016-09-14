@@ -1,49 +1,47 @@
 package com.twilio.ivrrecording.servlet.agent;
 
-import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.sdk.verbs.*;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import com.twilio.ivrrecording.servlet.WebAppServlet;
+import com.twilio.twiml.Gather;
+import com.twilio.twiml.Hangup;
+import com.twilio.twiml.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class ScreenCallServlet extends WebAppServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-        String from = request.getParameter("From");
+    String from = request.getParameter("From");
 
-        String incomingCallMessage = "You have an incoming call from: " + getSpelledPhoneNumber(from);
+    String incomingCallMessage = "You have an incoming call from: " + getSpelledPhoneNumber(from);
+    String gatherMessage = incomingCallMessage + ".Press any key to accept";
 
-        TwiMLResponse twiml = new TwiMLResponse();
+    Say sayInGather = new Say.Builder(gatherMessage).build();
+    Gather gather = new Gather.Builder()
+        .numDigits(1)
+        .action("/agents/message")
+        .say(sayInGather)
+        .build();
 
-        Gather gather = new Gather();
-        gather.setNumDigits(1);
-        gather.setAction("/agents/message");
+    Say say = new Say.Builder("Sorry. Did not get your response").build();
+    Hangup hangup = new Hangup();
 
-        Say sayInGather1 = new Say(incomingCallMessage);
-        Say sayInGather2 = new Say("Press any key to accept");
+    VoiceResponse voiceResponse = new VoiceResponse.Builder()
+        .gather(gather)
+        .say(say)
+        .hangup(hangup)
+        .build();
 
-        Say say = new Say("Sorry. Did not get your response");
-        Hangup hangup = new Hangup();
+    respondTwiML(response, voiceResponse);
+  }
 
-        try {
-            gather.append(sayInGather1);
-            gather.append(sayInGather2);
-
-            twiml.append(gather);
-            twiml.append(say);
-            twiml.append(hangup);
-        } catch (TwiMLException e) {
-            e.printStackTrace();
-        }
-
-        respondTwiML(response, twiml);
-    }
-
-    private String getSpelledPhoneNumber(String phoneNumber) {
-        return String.join(", ", phoneNumber.split(""));
-    }
+  private String getSpelledPhoneNumber(String phoneNumber) {
+    return String.join(", ", phoneNumber.split(""));
+  }
 }
