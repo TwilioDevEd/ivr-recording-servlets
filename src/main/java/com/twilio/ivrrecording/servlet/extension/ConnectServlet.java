@@ -63,13 +63,12 @@ public class ConnectServlet extends WebAppServlet {
   }
 
   private Agent findAgentByExtension(String extension) {
-    Map<String, String> planetsExtensiosn = new HashMap<>();
-    planetsExtensiosn.put("2", "Brodo");
-    planetsExtensiosn.put("3", "Dagobah");
-    planetsExtensiosn.put("4", "Oober");
+    Map<String, String> planetsExtensions = new HashMap<>();
+    planetsExtensions.put("2", "Brodo");
+    planetsExtensions.put("3", "Dagobah");
+    planetsExtensions.put("4", "Oober");
 
-
-    return planetsExtensiosn.containsKey(extension)
-        ? agentRepository.findByExtension(planetsExtensiosn.get(extension)) : null;
+    return planetsExtensions.containsKey(extension)
+        ? agentRepository.findByExtension(planetsExtensions.get(extension)) : null;
   }
 }
