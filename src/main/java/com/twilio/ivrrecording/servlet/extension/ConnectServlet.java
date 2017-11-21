@@ -11,7 +11,10 @@ import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.servlet.WebAppServlet;
 import com.twilio.twiml.*;
-import com.twilio.twiml.Number;
+import com.twilio.twiml.voice.Dial;
+import com.twilio.twiml.voice.Number;
+import com.twilio.twiml.voice.Redirect;
+import com.twilio.twiml.voice.Say;
 
 public class ConnectServlet extends WebAppServlet {
 
@@ -56,7 +59,7 @@ public class ConnectServlet extends WebAppServlet {
   }
 
   private void redirectToMenu(HttpServletResponse response) throws IOException {
-    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
+    Redirect redirect = new Redirect.Builder("/ivr/welcome").build();
     VoiceResponse voiceResponse = new VoiceResponse.Builder().redirect(redirect).build();
 
     respondTwiML(response, voiceResponse);

@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.Hangup;
-import com.twilio.twiml.Say;
 import com.twilio.twiml.VoiceResponse;
+import com.twilio.twiml.voice.Hangup;
+import com.twilio.twiml.voice.Say;
 
 public class HangupServlet extends WebAppServlet {
 
@@ -20,7 +20,7 @@ public class HangupServlet extends WebAppServlet {
         .voice(Say.Voice.ALICE)
         .build();
 
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder().build();
 
     VoiceResponse voiceResponse = new VoiceResponse.Builder().say(say).hangup(hangup).build();
 
