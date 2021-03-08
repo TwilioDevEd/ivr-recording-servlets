@@ -15,7 +15,7 @@ public class WelcomeServlet extends WebAppServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-    Play play = new Play.Builder("http://howtodocs.s3.amazonaws.com/et-phone.mp3")
+    Play play = new Play.Builder("https://can-tasty-8188.twil.io/assets/et-phone.mp3")
         .loop(3)
         .build();
 
