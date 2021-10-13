@@ -9,7 +9,7 @@ Twilio and Java Servlets.
 
 [Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/ivr-screening/java/servlets)!
 
-[![Build Status](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets.svg)](https://travis-ci.org/TwilioDevEd/ivr-recording-servlets)
+[![Java Servlet CI](https://github.com/TwilioDevEd/ivr-recording-servlets/actions/workflows/gradle.yml/badge.svg)](https://github.com/TwilioDevEd/ivr-recording-servlets/actions/workflows/gradle.yml)
 
 ## Run the application
 
