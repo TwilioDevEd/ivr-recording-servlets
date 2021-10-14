@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.Say;
 import com.twilio.twiml.VoiceResponse;
+import com.twilio.twiml.voice.Say;
 
 public class MessageServlet extends WebAppServlet {
 
