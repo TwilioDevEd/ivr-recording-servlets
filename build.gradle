@@ -1,6 +1,3 @@
-group 'com.twilio.ivrrecording'
-version '1.0'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -11,9 +8,16 @@ buildscript {
     }
 }
 
+plugins {
+    id 'co.uzzu.dotenv.gradle' version '1.2.0'
+}
+
 apply plugin: 'java'
 apply plugin: 'jetty'
 apply plugin: 'org.flywaydb.flyway'
+
+group 'com.twilio.ivrrecording'
+version '1.0'
 
 jettyRun.contextPath = '';
 sourceCompatibility = 1.8
@@ -28,6 +32,8 @@ dependencies {
     compile 'org.eclipse.persistence:eclipselink:2.6.2'
     compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
     compile 'com.twilio.sdk:twilio:7.0.0-rc-29'
+    compile 'org.postgresql:postgresql:9.4-1206-jdbc42'
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.jdom:jdom:2.0.2'
@@ -35,7 +41,7 @@ dependencies {
 }
 
 flyway {
-    user = "$System.env.DB_USERNAME"
-    password = "$System.env.DB_PASSWORD"
-    url = "$System.env.JDBC_URL"
+    user = env.DB_USERNAME.value
+    password = env.DB_PASSWORD.value
+    url = env.JDBC_URL.value
 }
