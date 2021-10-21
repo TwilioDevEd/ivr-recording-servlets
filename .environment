@@ -1,3 +1,0 @@
-export DB_USERNAME=postgres
-export DB_PASSWORD=postgres
-export JDBC_URL=jdbc:postgresql://localhost:5432/ivr-recording

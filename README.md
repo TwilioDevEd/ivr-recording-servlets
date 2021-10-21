@@ -11,7 +11,14 @@ Twilio and Java Servlets.
 
 [![Java Servlet CI](https://github.com/TwilioDevEd/ivr-recording-servlets/actions/workflows/gradle.yml/badge.svg)](https://github.com/TwilioDevEd/ivr-recording-servlets/actions/workflows/gradle.yml)
 
-## Run the application
+## Setup
+
+### Requirements
+1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+   installed for your operative system.
+2. A [Twilio Account](https://www.twilio.com/)
+
+### Local Development
 
 1. Clone the repository and `cd` into it.
     ```
@@ -22,38 +29,26 @@ Twilio and Java Servlets.
 1. Create the database.
 
     ```bash
-    $ createdb ivr-recording
+    createdb ivr-recording
 
     ```
-  _The application uses PostgreSQL as the persistence layer. If you
-  don't have it already, you should install it. The easiest way is by
-  using [Postgres.app](http://postgresapp.com/)._
+   _The application uses PostgreSQL as the persistence layer. If you
+   don't have it already, you should install it. The easiest way is by
+   using [Postgres.app](http://postgresapp.com/)._
 
-1. Edit the sample configuration file `.environment` to match your database configuration:
+1. Set your environment variables
     ```
-    export DB_USERNAME=your_db_username
-    export DB_PASSWORD=your_db_password
-    export JDBC_URL=jdbc:postgresql://localhost:5432/ivr-recording
+     cp .env.example .env
     ```
-
-  Once you have edited the `.environment` file, if you are using a UNIX operating system,
-  just use the `source` command to load the variables into your environment:
-
-  ```bash
-  $ source .environment
-  ```
-
-  _If you are using a different operating system, make sure that all the
-  variables from the `.environment` file are loaded into your environment._
 
 1. Execute the migrations.
     ```bash
-    $ ./gradlew flywayMigrate
+    ./gradlew flywayMigrate
     ```
 
 1. Run the application.
     ```bash
-    $ ./gradlew jettyRun
+    ./gradlew jettyRun
     ```
 
 1. Expose the application to the wider Internet using [ngrok](https://ngrok.com/)
@@ -62,7 +57,7 @@ Twilio and Java Servlets.
     ngrok http 8080 -host-header="localhost:8080"
     ```
 
-5. Provision a number under the
+1. Provision a number under the
    [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming)
    on your account. Set the voice URL for the number to
    `http://<your-ngrok-subdomain>.ngrok.io/ivr/welcome`.
