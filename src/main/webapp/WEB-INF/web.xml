@@ -89,4 +89,26 @@
         <servlet-name>record-create</servlet-name>
         <url-pattern>/records/create</url-pattern>
     </servlet-mapping>
+
+    <!-- Error handling -->
+    <servlet>
+        <servlet-name>AppExceptionHandler</servlet-name>
+        <servlet-class>com.twilio.ivrrecording.servlet.exception.AppExceptionHandler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AppExceptionHandler</servlet-name>
+        <url-pattern>/AppExceptionHandler</url-pattern>
+    </servlet-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/AppExceptionHandler</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type >
+        <location>/AppExceptionHandler</location>
+    </error-page>
+
 </web-app>
