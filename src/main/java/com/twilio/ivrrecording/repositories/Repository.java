@@ -1,5 +1,8 @@
 package com.twilio.ivrrecording.repositories;
 
+import com.twilio.ivrrecording.config.Config;
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -103,20 +106,19 @@ public abstract class Repository<T> {
   }
 
   private Map<String, String> getProperties() {
-    Map<String, String> env = System.getenv();
+    Dotenv dotenv = Config.getDotenv();
     Map<String, String> config = new HashMap<>();
-    for (String key : env.keySet()) {
-      if (key.contains("JDBC_URL")) {
-        config.put("javax.persistence.jdbc.url", env.get(key));
-      }
 
-      if (key.contains("DB_USER")) {
-        config.put("javax.persistence.jdbc.user", env.get(key));
-      }
+    if (dotenv.get("JDBC_URL") != null) {
+      config.put("javax.persistence.jdbc.url", dotenv.get("JDBC_URL"));
+    }
 
-      if (key.contains("DB_PASSWORD")) {
-        config.put("javax.persistence.jdbc.password", env.get(key));
-      }
+    if (dotenv.get("DB_USERNAME") != null) {
+      config.put("javax.persistence.jdbc.user", dotenv.get("DB_USERNAME"));
+    }
+
+    if (dotenv.get("DB_PASSWORD") != null) {
+      config.put("javax.persistence.jdbc.password", dotenv.get("DB_PASSWORD"));
     }
 
     return config;
