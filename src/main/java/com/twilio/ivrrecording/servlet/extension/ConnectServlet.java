@@ -36,7 +36,7 @@ public class ConnectServlet extends WebAppServlet {
       redirectToMenu(response);
     } else {
       Say say = new Say.Builder("You'll be connected shortly to your planet.")
-          .voice(Say.Voice.ALICE)
+          .voice(Say.Voice.POLLY_AMY)
           .language(Say.Language.EN_GB)
           .build();
 

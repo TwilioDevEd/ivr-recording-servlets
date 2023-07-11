@@ -28,7 +28,7 @@ public class CallServlet extends WebAppServlet {
     Say say1 = new Say.Builder(
         "It appears that no agent is available. " + "Please leave a message after the beep")
             .language(Say.Language.EN_GB)
-            .voice(Say.Voice.ALICE)
+            .voice(Say.Voice.POLLY_AMY)
             .build();
 
     Record record = new Record.Builder()
@@ -39,7 +39,7 @@ public class CallServlet extends WebAppServlet {
 
     Say say2 = new Say.Builder("No record received. Goodbye")
         .language(Say.Language.EN_GB)
-        .voice(Say.Voice.ALICE)
+        .voice(Say.Voice.POLLY_AMY)
         .build();
 
     Hangup hangup = new Hangup();

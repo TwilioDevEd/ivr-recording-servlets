@@ -17,7 +17,7 @@ public class HangupServlet extends WebAppServlet {
       throws ServletException, IOException {
     Say say = new Say.Builder("Thanks for your message. Goodbye")
         .language(Say.Language.EN_GB)
-        .voice(Say.Voice.ALICE)
+        .voice(Say.Voice.POLLY_AMY)
         .build();
 
     Hangup hangup = new Hangup();
