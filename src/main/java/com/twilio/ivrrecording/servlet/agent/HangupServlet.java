@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.Hangup;
-import com.twilio.twiml.Say;
+import com.twilio.twiml.voice.Hangup;
+import com.twilio.twiml.voice.Say;
 import com.twilio.twiml.VoiceResponse;
 
 public class HangupServlet extends WebAppServlet {

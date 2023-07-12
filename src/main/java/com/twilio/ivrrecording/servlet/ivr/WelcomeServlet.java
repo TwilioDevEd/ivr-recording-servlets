@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.Gather;
-import com.twilio.twiml.Play;
+import com.twilio.voice.twiml.Gather;
+import com.twilio.voice.twiml.Play;
 import com.twilio.twiml.VoiceResponse;
 
 public class WelcomeServlet extends WebAppServlet {

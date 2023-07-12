@@ -11,7 +11,7 @@ import com.twilio.ivrrecording.models.Agent;
 import com.twilio.ivrrecording.repositories.AgentRepository;
 import com.twilio.ivrrecording.servlet.WebAppServlet;
 import com.twilio.twiml.*;
-import com.twilio.twiml.Number;
+import com.twilio.twiml.voice.Number;
 
 public class ConnectServlet extends WebAppServlet {
 
