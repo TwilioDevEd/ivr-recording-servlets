@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.Hangup;
-import com.twilio.twiml.Record;
-import com.twilio.twiml.Say;
+import com.twilio.twiml.voice.Hangup;
+import com.twilio.twiml.voice.Record;
+import com.twilio.twiml.voice.Say;
 import com.twilio.twiml.VoiceResponse;
 
 public class CallServlet extends WebAppServlet {
@@ -28,7 +28,7 @@ public class CallServlet extends WebAppServlet {
     Say say1 = new Say.Builder(
         "It appears that no agent is available. " + "Please leave a message after the beep")
             .language(Say.Language.EN_GB)
-            .voice(Say.Voice.ALICE)
+            .voice(Say.Voice.POLLY_AMY)
             .build();
 
     Record record = new Record.Builder()
@@ -39,10 +39,10 @@ public class CallServlet extends WebAppServlet {
 
     Say say2 = new Say.Builder("No record received. Goodbye")
         .language(Say.Language.EN_GB)
-        .voice(Say.Voice.ALICE)
+        .voice(Say.Voice.POLLY_AMY)
         .build();
 
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder().build();
 
     VoiceResponse voiceResponse = new VoiceResponse.Builder()
         .say(say1)

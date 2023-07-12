@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.*;
+import com.twilio.twiml.voice.Gather;
+import com.twilio.twiml.voice.Hangup;
+import com.twilio.twiml.voice.Redirect;
+import com.twilio.twiml.voice.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class ShowServlet extends WebAppServlet {
 
@@ -38,13 +42,13 @@ public class ShowServlet extends WebAppServlet {
         new Say.Builder("To get to your extraction point, get on your bike and go down "
             + "the street. Then Left down an alley. Avoid the police cars. Turn left "
             + "into an unfinished housing development. Fly over the roadblock. Go "
-            + "passed the moon. Soon after you will see your mother ship.").voice(Say.Voice.ALICE)
+            + "passed the moon. Soon after you will see your mother ship.").voice(Say.Voice.POLLY_AMY)
                 .language(Say.Language.EN_GB).build();
 
     Say secondPhrase = new Say.Builder("Thank you for calling the ET Phone Home Service - the "
         + "adventurous alien's first choice in intergalactic travel").build();
 
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder().build();
 
     VoiceResponse voiceResponse =
         new VoiceResponse.Builder().say(firstPhrase).say(secondPhrase).hangup(hangup).build();
@@ -56,7 +60,7 @@ public class ShowServlet extends WebAppServlet {
     Say phrase = new Say.Builder("To call the planet Broh doe As O G, press 2. To call the planet "
         + "DuhGo bah, press 3. To call an oober asteroid to your location, press 4. To "
         + "go back to the main menu, press the star key ")
-            .voice(Say.Voice.ALICE)
+            .voice(Say.Voice.POLLY_AMY)
             .language(Say.Language.EN_GB)
             .loop(3)
             .build();
@@ -73,7 +77,7 @@ public class ShowServlet extends WebAppServlet {
   }
 
   private VoiceResponse redirectWelcome() {
-    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
+    Redirect redirect = new Redirect.Builder("/ivr/welcome").build();
 
     VoiceResponse voiceResponse= new VoiceResponse.Builder().redirect(redirect).build();
 
