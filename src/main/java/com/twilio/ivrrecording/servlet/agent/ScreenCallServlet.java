@@ -30,7 +30,7 @@ public class ScreenCallServlet extends WebAppServlet {
         .build();
 
     Say say = new Say.Builder("Sorry. Did not get your response").build();
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder();
 
     VoiceResponse voiceResponse = new VoiceResponse.Builder()
         .gather(gather)

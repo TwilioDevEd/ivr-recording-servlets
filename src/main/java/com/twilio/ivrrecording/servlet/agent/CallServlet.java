@@ -42,7 +42,7 @@ public class CallServlet extends WebAppServlet {
         .voice(Say.Voice.POLLY_AMY)
         .build();
 
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder();
 
     VoiceResponse voiceResponse = new VoiceResponse.Builder()
         .say(say1)

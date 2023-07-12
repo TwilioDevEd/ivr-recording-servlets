@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.twilio.ivrrecording.servlet.WebAppServlet;
-import com.twilio.twiml.*;
+import com.twilio.twiml.voice.Gather;
+import com.twilio.twiml.voice.Hangup;
+import com.twilio.twiml.voice.Redirect;
+import com.twilio.twiml.voice.Say;
+import com.twilio.twiml.VoiceResponse;
 
 public class ShowServlet extends WebAppServlet {
 
@@ -44,7 +48,7 @@ public class ShowServlet extends WebAppServlet {
     Say secondPhrase = new Say.Builder("Thank you for calling the ET Phone Home Service - the "
         + "adventurous alien's first choice in intergalactic travel").build();
 
-    Hangup hangup = new Hangup();
+    Hangup hangup = new Hangup.Builder();
 
     VoiceResponse voiceResponse =
         new VoiceResponse.Builder().say(firstPhrase).say(secondPhrase).hangup(hangup).build();
