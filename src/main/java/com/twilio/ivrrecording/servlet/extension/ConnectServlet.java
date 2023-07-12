@@ -59,7 +59,7 @@ public class ConnectServlet extends WebAppServlet {
   }
 
   private void redirectToMenu(HttpServletResponse response) throws IOException {
-    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
+    Redirect redirect = new Redirect.Builder("/ivr/welcome").build();
     VoiceResponse voiceResponse = new VoiceResponse.Builder().redirect(redirect).build();
 
     respondTwiML(response, voiceResponse);

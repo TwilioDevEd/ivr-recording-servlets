@@ -48,7 +48,7 @@ public class ShowServlet extends WebAppServlet {
     Say secondPhrase = new Say.Builder("Thank you for calling the ET Phone Home Service - the "
         + "adventurous alien's first choice in intergalactic travel").build();
 
-    Hangup hangup = new Hangup.Builder();
+    Hangup hangup = new Hangup.Builder().build();
 
     VoiceResponse voiceResponse =
         new VoiceResponse.Builder().say(firstPhrase).say(secondPhrase).hangup(hangup).build();
@@ -77,7 +77,7 @@ public class ShowServlet extends WebAppServlet {
   }
 
   private VoiceResponse redirectWelcome() {
-    Redirect redirect = new Redirect.Builder().url("/ivr/welcome").build();
+    Redirect redirect = new Redirect.Builder("/ivr/welcome").build();
 
     VoiceResponse voiceResponse= new VoiceResponse.Builder().redirect(redirect).build();
 

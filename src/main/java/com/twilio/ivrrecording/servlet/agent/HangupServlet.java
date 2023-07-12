@@ -20,7 +20,7 @@ public class HangupServlet extends WebAppServlet {
         .voice(Say.Voice.POLLY_AMY)
         .build();
 
-    Hangup hangup = new Hangup.Builder();
+    Hangup hangup = new Hangup.Builder().build();
 
     VoiceResponse voiceResponse = new VoiceResponse.Builder().say(say).hangup(hangup).build();
 
